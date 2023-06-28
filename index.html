@@ -1,51 +1,134 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Haumea</title>
+  <meta name="description" content="Haumea is a dumping ground for whatever I&#39;ve been working on">
+  <link rel="canonical" href="https://haumealabs.github.io/">
+  <link rel="alternate" type="application/rss+xml" title="Haumea Feed"
+    href="https://haumealabs.github.io/feed.xml">
+  
+  <!-- Styles -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i%7CNoto+Serif:400,400i,700,700i&display=swap" rel="stylesheet">
+  <link href="/assets/css/style.css" rel="stylesheet">
+</head>
+<body>
 
-<main class="main-content fadeInDown delay_075s">
+  <div id="page" class="site">
+    <div class="inner">
+      <header class="site-header">
+  
+  <h1 class="site-title"><a class="logo-text" href="/">Haumea</a></h1>
+  
+  <nav class="site-navigation">
+    <div class="site-navigation-wrap">
+      <h2 class="screen-reader-text">Main navigation</h2>
+      <ul class="menu">
+        
+        
+        
+        <li class="menu-item nav-current">
+          <a class="nav-current" href="/">Home</a>
+        </li>
+        
+        
+        
+        <li class="menu-item ">
+          <a class="" href="/about/">About</a>
+        </li>
+        
+        
+        
+        <li class="menu-item ">
+          <a class="" href="/tags/">Tags</a>
+        </li>
+        
+      </ul><!-- .menu -->
+      <button id="menu-close" class="menu-toggle"><span class="screen-reader-text">Close Menu</span><span
+          class="icon-close" aria-hidden="true"></span></button>
+    </div><!-- .site-navigation-wrap -->
+  </nav><!-- .site-navigation -->
+  <button id="menu-open" class="menu-toggle"><span class="screen-reader-text">Open Menu</span><span class="icon-menu" aria-hidden="true"></span></button>
+</header>
 
-  {% for post in paginator.posts %}
+
+<div class="site-description fadeInDown delay_05s">
+  <p>Haumea is a dumping ground for whatever I've been working on</p>
+</div><!-- .site-description -->
+
+      <main class="main-content fadeInDown delay_075s">
+
+  
   <article class="post">
     <header class="post-header">
-      <time class="post-date" datetime="{{ post.date | date: "%Y-%m-%d" }}">{{post.date | date: "%B %-d, %Y" }}</time>
-      <h2 class="post-title"><a href="{{ site.baseurl }}{{ post.url }}" rel="bookmark">{{post.title}}</a></h2>
+      <time class="post-date" datetime="2023-06-27">June 27, 2023</time>
+      <h2 class="post-title"><a href="/air-quality-data-1" rel="bookmark">Air Quality Monitoring, Part 1</a></h2>
       <div class="post-meta">
-        By <span class="post-author">{{ site.data.author.name }}</span>{% if post.tags.size > 0 %}<span
+        By <span class="post-author">Haumea Labs</span><span
           class="post-tags"> in
-          {% for tag in post.tags %}<a href="{{ site.baseurl }}/tags/#{{ tag | cgi_escape }}" rel="tag">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}</span>{% endif %}
+          <a href="/tags/#air-quality" rel="tag">air-quality</a>, <a href="/tags/#satellites" rel="tag">satellites</a></span>
       </div><!-- .post-meta -->
-      {% if post.feature_image and post.feature_image != "" %}
+      
       <figure class="post-thumbnail image-card width-wide">
-        <a href="{{site.baseurl}}{{post.url}}"><img src="{{ post.feature_image | relative_url }}"
-            alt="{{ post.title }}"></a>
+        <a href="/air-quality-data-1"><img src="/images/baltimore.jpg"
+            alt="Air Quality Monitoring, Part 1"></a>
       </figure><!-- .post-thumbnail -->
-      {% endif %}
+      
     </header><!-- .post-header -->
     <div class="post-content">
-      {% if post.content contains '<!--more-->' %}
-      {{ post.content | split:'<!--more-->' | first }}
-      <p class="read-more"><a href="{{ site.baseurl }}{{ post.url }}" class="read-more-link">Continue reading &rarr;</a>
-      </p>
-      {% else %}
-      {{ post.content }}
-      {% endif %}
+      
+      <p>A few weeks ago, I woke up to the worst air quality index ever seen in Baltimore, where I live. Wildfires in Canada had blown smoke down, resulting in an air quality index of over 200. That may not sound like a lot, particularly if you’re from out west, but I’ve only ever experienced air quality that low in the center of Beijing. On a normal day, I can see the <a href="https://en.wikipedia.org/wiki/Washington_Monument_(Baltimore)">Mount Vernon Washington Monument</a> in the distance on my commute to work. On that day though, I could barely see a few blocks. That got me thinking.</p>
+
+<p>I work with astronomical datasets for a living, and one of the issues we encounter is called <a href="https://en.wikipedia.org/wiki/Extinction_(astronomy)">extinction</a>. The principle behind extinction is fairly intuitive. Imagine we want to look at a star thats very far away from us in a telescope. First, that light needs to be emitted from the star. Then, the emitted light needs to travel from the star into our telescope. Sounds simple right? Not quite. Space is full of gigantic clouds of dust. Astronomers call it the interstellar medium, or ISM. That dust blocks some of the light from reaching us. It’s kind of like trying to look across a room full of smoke: you can get a pretty good idea of what’s on the other side, but you’re not going to get a perfectly clear picture. In astronomy, this means that our observations aren’t quite reality. Entire careers are built on making 3-dimensional maps of these dust clouds so that we can correct for extinction and get a clear image of what’s on the other side of them.</p>
+
+<p>But what, you may (reasonably) ask, does that have to do with bad air quality in Baltimore? Well, it turns out that extinction isn’t unique to astronomers. You see, one of the most important sources of data in understanding air quality are satellite measurements. If you want to measure something on the Earth’s surface from a satellite, you’ve first got to get through the atmosphere. And if you’re observing something through the atmosphere, it’s not gonna be the same as what you’d measure on the ground.</p>
+
+<p>To zeroth order, the atmosphere acts a lot like one of these interstellar dust clouds, but there are two crucial differences. First, interstellar dust clouds are <em>very</em> spread out. That means that any given photon of light is less likely to hit a dust particle, which means that the final picture is going to have less extinction. The atmosphere, by contrast, is so dense that certain wavelengths of light never even make it to the surface. Practically speaking, this means that a lot of satellite measurements aren’t actually measuring conditions on the Earth’s surface, they’re actually only measuring so far deep into the atmosphere.</p>
+
+<p>The second factor is maybe even more important: interstellar dust clouds don’t move. That means that we can map their structure and develop models to work backwards and figure out how bright an observation target actually is, since we know how bright it looks and how much dust is in the way. The atmosphere, obviously, does move. The consequences of this are what we call weather. If we wanted to develop an analogous algorithm to correct for extinction, we would need to have a perfect picture of the exact chemical and thermal distribution of the atmosphere at any given time. The existance of the field of meteorology is testament to the fact that that’s impossible given current technologies (<a href="https://en.wikipedia.org/wiki/Laplace%27s_demon#Thermodynamic_irreversibility">and almost certainly the laws of physics!</a>).</p>
+
+<p><strong>So here’s the problem:</strong> satellite measurements of the key parameters that control air quality index, concentrations of PM2.5, NO<sub>2</sub>, and SO<sub>2</sub>, aren’t accurate representations of what I, as a human who lives on the Earth’s surface, breathe in. Can I build a tool to use meteorological data to predict surface-level air pollution from satellite data? Stay tuned.</p>
+
+
+      
     </div><!-- .post-content -->
   </article><!-- .post -->
-  {% endfor %}
+  
 
-  {% if paginator.total_pages > 1 %}
-  <nav class="pagination">
-    <h2 class="screen-reader-text">Posts navigation</h2>
-    <div class="nav-links">
-      {% if paginator.previous_page %}
-      <a href="{{ paginator.previous_page_path | relative_url }}" class="newer-posts">&larr; Newer Posts</a>
-      {% endif %}
-      <span class="page-number">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
-      {% if paginator.next_page %}
-      <a href="{{ paginator.next_page_path | relative_url }}" class="older-posts">Older Posts &rarr;</a>
-      {% endif %}
-    </div>
-  </nav><!-- .pagination -->
-  {% endif %}
+  
 
 </main><!-- .site-main -->
+      <footer class="site-footer">
+  <div class="offsite-links">
+    
+  </div><!-- .offsite-links -->
+  <div class="footer-bottom">
+    <div class="site-info">
+      <p>© Haumea all rights reserved.</p>
+
+    </div><!-- .site-info -->
+    <a href="#page" id="back-to-top" class="back-to-top"><span class="screen-reader-text">Back to the top </span>&#8593;</a>
+  </div><!-- .footer-bottom -->
+</footer><!-- .site-footer -->
+
+    </div><!-- .inner -->
+  </div><!-- .site -->
+
+  <!-- Scripts -->
+  
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', '', 'auto');
+  ga('send', 'pageview');
+</script>
+  
+  <script src="/assets/js/plugins.js"></script>
+  <script src="/assets/js/custom.js"></script>
+
+</body>
+</html>
